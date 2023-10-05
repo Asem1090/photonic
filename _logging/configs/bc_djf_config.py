@@ -2,11 +2,11 @@ from logging import getLogger, DEBUG, Formatter, StreamHandler, FileHandler
 from sys import stdout
 # from jsonformatter import jsonformatter
 
-from src.log.formatters import DATE_FORMAT
-from src.log.handlers import LOG_FILE_PATH
+from _logging.formatters import DATE_FORMAT
+from _logging.handlers import LOG_FILE_PATH
 
 
-def config(logger_name):
+def bc_djf_config(logger_name):
     # Formatters
     brief_formatter = Formatter(
         "%(levelname)s - %(filename)s - %(funcName)s - %(lineno)d - %(message)s",
