@@ -1,21 +1,19 @@
-from logging import Handler, LogRecord
-from os.path import getsize
-
-from _logging.handlers import LOG_FILE_PATH
+from json import load, dump
+from logging import LogRecord, Handler, NOTSET
 
 
 class JsonFileHandler(Handler):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, file_name, level=NOTSET):
+        super().__init__(level)
 
-        if getsize(LOG_FILE_PATH) == 0:
-            self.logIsEmpty = True
-        else:
-            self.logIsEmpty = False
+        self.file_name = file_name
+
+        with open(file_name, mode="a+"):
+            ...
 
     def emit(self, record: LogRecord) -> None:
-        if self.logIsEmpty:
-            record.msg = ",\n" + record.msg
-            self.logIsEmpty = False
+        logs = load(self.file_name)
+        print(logs)
+        print(record)
+        print(record.msg)
 
-        super().emit(record)

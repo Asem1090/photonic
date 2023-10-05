@@ -4,6 +4,7 @@ from sys import stdout
 
 from _logging.formatters import DATE_FORMAT
 from _logging.handlers import LOG_FILE_PATH
+from _logging.handlers.json_file_handler import JsonFileHandler
 
 
 def bc_djf_config(logger_name):
@@ -15,7 +16,7 @@ def bc_djf_config(logger_name):
 
     json_detailed_formatter = Formatter(
         "{\n"  # Maybe stack_info is needed
-        "\tLevel: %(level)s,\n"
+        "\tLevel: %(levelname)s,\n"
         "\tFile: %(filename)s,\n"
         "\tFunction %(funcName)s,\n"
         "\tLine: %(lineno)d,\n"
@@ -30,7 +31,7 @@ def bc_djf_config(logger_name):
     console_handler.setLevel(DEBUG)
     console_handler.setFormatter(brief_formatter)
 
-    file_handler = FileHandler(LOG_FILE_PATH)
+    file_handler = JsonFileHandler(LOG_FILE_PATH)
     file_handler.setLevel(DEBUG)
     file_handler.setFormatter(json_detailed_formatter)
 

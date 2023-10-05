@@ -31,4 +31,4 @@ class Logger:
     @threaded
     def __log(self, level, message: str) -> None:
         with self.__file_lock:
-            self.__logger.log(level, message)
+            self.__logger.log(level, message)  # Check stacklevel argument
