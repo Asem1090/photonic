@@ -1,4 +1,6 @@
-def get_path():
+from .json_file_handler import JsonFileHandler
+
+def _get_path():
     from os import getcwd
     from os.path import join
 
@@ -6,4 +8,4 @@ def get_path():
     return join(_project_folder, "log.json")
 
 
-LOG_FILE_PATH = get_path()
+LOG_FILE_PATH = _get_path()

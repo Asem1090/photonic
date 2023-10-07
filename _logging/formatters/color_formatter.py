@@ -1,6 +1,6 @@
 from logging import Formatter, LogRecord
 
-from .color_enum import Color
+from .color import Color
 
 
 class ColorFormatter(Formatter):
