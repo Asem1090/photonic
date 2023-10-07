@@ -1,19 +1,18 @@
 from json import load, dump
 from logging import LogRecord, Handler, NOTSET
 
-
 class JsonFileHandler(Handler):
-    def __init__(self, file_name, level=NOTSET):
+    def __init__(self, file_path, level=NOTSET):
         super().__init__(level)
 
-        self.file_name = file_name
-
-        with open(file_name, mode="a+"):
-            ...
+        self.file_path = file_path
 
     def emit(self, record: LogRecord) -> None:
-        logs = load(self.file_name)
-        print(logs)
-        print(record)
-        print(record.msg)
+        log = self.format(record)
 
+        with open(self.file_path, "r+") as file:
+            data = load(file)
+            data.append(log)
+
+            file.seek(0)
+            dump(data, file)
