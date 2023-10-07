@@ -15,14 +15,16 @@ def bc_djf_config(logger_name):
     )
 
     json_detailed_formatter = Formatter(
-        "{\n"  # Maybe stack_info is needed
-        "\tLevel: %(levelname)s,\n"
-        "\tFile: %(filename)s,\n"
-        "\tFunction %(funcName)s,\n"
-        "\tLine: %(lineno)d,\n"
-        "\tTime: %(asctime)s,\n"
-        "\tMessage: %(message)s,\n"
-        "}",
+        """
+        {
+            "Level": "%(levelname)s",
+            "File": "%(filename)s",
+            "Function": "%(funcName)s",
+            "Line": "%(lineno)d",
+            "Time": "%(asctime)s",
+            "Message": "%(message)s"
+        }
+        """,
         datefmt=DATE_FORMAT
     )
 
