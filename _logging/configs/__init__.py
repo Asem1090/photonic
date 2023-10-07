@@ -1,37 +1,14 @@
-from logging import getLogger, DEBUG, WARNING, Formatter, StreamHandler
+from logging import getLogger, DEBUG, WARNING, StreamHandler
 from sys import stdout
 
-from _logging.formatters import DATE_FORMAT
+from _logging.formatters import get_brief_formatter, get_colored_brief_formatter, get_detailed_json_formatter
 from _logging.handlers import LOG_FILE_PATH
 from _logging.handlers.json_file_handler import JsonFileHandler
 
 
-def get_brief_formatter():
-    return Formatter(
-        "%(levelname)s - %(filename)s - %(funcName)s - %(lineno)d - %(message)s",
-        datefmt=DATE_FORMAT
-    )
-
-
-def get_detailed_json_formatter():
-    return Formatter(
-        """
-        {
-            "Level": "%(levelname)s",
-            "File": "%(filename)s",
-            "Function": "%(funcName)s",
-            "Line": "%(lineno)d",
-            "Time": "%(asctime)s",
-            "Message": "%(message)s"
-        }
-        """,
-        datefmt=DATE_FORMAT
-    )
-
-
-def brief_console_config(logger_name, level=WARNING, propagate=False):
+def brief_console_config(logger_name, level=WARNING, propagate=False, colors_on=True):
     # Setting the Formatter
-    brief_formatter = get_brief_formatter()
+    brief_formatter = get_colored_brief_formatter() if colors_on else get_brief_formatter()
 
     # Setting up the Console Handler
     console_handler = StreamHandler(stream=stdout)
