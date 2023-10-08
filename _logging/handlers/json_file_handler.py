@@ -1,14 +1,17 @@
 from json import load, dump, loads
-from logging import LogRecord, Handler, NOTSET, getLogger
+from logging import LogRecord, Handler, getLogger, DEBUG, Formatter
 from os.path import isfile, getsize
 from json.decoder import JSONDecodeError
 
+from _logging.formatters import detailed_json_format, date_format
+
 
 class JsonFileHandler(Handler):
-    def __init__(self, file_path, level=NOTSET):
+    def __init__(self, file_path, level=DEBUG, formatter=Formatter(detailed_json_format, date_format)):
         super().__init__(level)
 
         self.file_path = file_path
+        self.setFormatter(formatter)
 
     def emit(self, record: LogRecord) -> None:
         for _ in range(2):  # Repeating once after validate_json

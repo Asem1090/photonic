@@ -1,5 +1,4 @@
 from .color_formatter import ColorFormatter
-from .color import Color
 
 date_format = "%Y-%m-%d %H:%M:%S"
 brief_format = "%(levelname)s - %(filename)s - %(funcName)s - %(lineno)d - %(message)s"

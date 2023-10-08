@@ -1,19 +1,19 @@
 from logging import Formatter, LogRecord
 
-from .color import Color
+from enums.color import AnsiColor
 
 
 class ColorFormatter(Formatter):
     color_map = {
-        "DEBUG": Color.GREY,
-        "INFO": Color.BLUE,
-        "WARNING": Color.YELLOW,
-        "ERROR": Color.RED,
-        "CRITICAL": Color.BOLD_RED
+        "DEBUG": AnsiColor.GREY,
+        "INFO": AnsiColor.BLUE,
+        "WARNING": AnsiColor.YELLOW,
+        "ERROR": AnsiColor.RED,
+        "CRITICAL": AnsiColor.BOLD_RED
     }
 
     def format(self, record: LogRecord) -> str:
         log = super().format(record)
-        colored_log = ColorFormatter.color_map[record.levelname].value + log + Color.RESET.value
+        colored_log = ColorFormatter.color_map[record.levelname].value + log + AnsiColor.RESET.value
 
         return colored_log
