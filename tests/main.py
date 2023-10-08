@@ -10,7 +10,7 @@ def main():
 
     # Configuring the logger
     brief_console_config(logger_name)
-    # detailed_json_file_config(logger_name)
+    detailed_json_file_config(logger_name)
 
     logger = getLogger(logger_name)
     logger.debug(f"Test Message from logger.debug #{uuid1}")
