@@ -13,9 +13,6 @@ class Logger:
 
         self.__file_lock = Lock()
 
-    def __del__(self):
-        ...
-
     def debug(self, message: str) -> None:
         self.__log(DEBUG, message)
 
