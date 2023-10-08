@@ -1,8 +1,10 @@
 from logging import getLogger, DEBUG, WARNING, StreamHandler, Formatter
 from sys import stdout
 
-from _logging.formatters import brief_format, date_format, detailed_json_format, ColorFormatter, detailed_format
-from _logging.handlers import LOG_FILE_PATH, JsonFileHandler
+from _logging.formatters import *
+from _logging.handlers import *
+from _logging.handlers.console_handler import ConsoleHandler
+from _logging.loggers.logger import Logger
 
 
 def brief_console_config(logger_name, level=WARNING, propagate_on=False, colors_on=True):
@@ -11,9 +13,7 @@ def brief_console_config(logger_name, level=WARNING, propagate_on=False, colors_
     brief_formatter = formatter(fmt=brief_format, datefmt=date_format)
 
     # Setting up the Console Handler
-    console_handler = StreamHandler(stream=stdout)
-    console_handler.setLevel(level)
-    console_handler.setFormatter(brief_formatter)
+    console_handler = ConsoleHandler(level, brief_formatter)
 
     # Setting up the logger
     logger = getLogger(logger_name)
@@ -28,9 +28,7 @@ def detailed_console_config(logger_name, level=DEBUG, propagate_on=False, colors
     detailed_formatter = formatter(fmt=detailed_format, datefmt=date_format)
 
     # Setting up the Console Handler
-    console_handler = StreamHandler(stream=stdout)
-    console_handler.setLevel(level)
-    console_handler.setFormatter(detailed_formatter)
+    console_handler = ConsoleHandler(level, detailed_formatter)
 
     # Setting up the logger
     logger = getLogger(logger_name)
@@ -40,12 +38,8 @@ def detailed_console_config(logger_name, level=DEBUG, propagate_on=False, colors
 
 
 def detailed_json_file_config(logger_name, level=DEBUG, propagate_on=False):
-    detailed_json_formatter = Formatter(fmt=detailed_json_format, datefmt=date_format)
-
     # Setting up the json file handler
-    file_handler = JsonFileHandler(LOG_FILE_PATH)
-    file_handler.setLevel(level)
-    file_handler.setFormatter(detailed_json_formatter)
+    file_handler = JsonFileHandler(LOG_FILE_PATH, level)
 
     # Setting up the logger
     logger = getLogger(logger_name)
