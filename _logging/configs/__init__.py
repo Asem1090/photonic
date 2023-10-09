@@ -4,26 +4,19 @@ from _logging.formatters import *
 from _logging.handlers import *
 
 
-def brief_console_config(logger_name: str, level=WARNING, propagate: bool = False, colors: bool = True) -> None:
+def console_config(
+        logger_name: str, fmt=brief_format, level=WARNING, propagate: bool = False, colors: bool = True
+) -> None:
     formatter = ColorFormatter if colors else Formatter
-    brief_formatter = formatter(fmt=brief_format, datefmt=date_format)
+    _formatter = formatter(fmt=fmt, datefmt=date_format)
 
-    console_handler = ConsoleHandler(level, brief_formatter)
+    console_handler = ConsoleHandler(level, _formatter)
 
     setup_logger(logger_name, level, console_handler, propagate)
 
 
-def detailed_console_config(logger_name: str, level=DEBUG, propagate: bool = False, colors: bool = True) -> None:
-    formatter = ColorFormatter if colors else Formatter
-    detailed_formatter = formatter(fmt=detailed_format, datefmt=date_format)
-
-    console_handler = ConsoleHandler(level, detailed_formatter)
-
-    setup_logger(logger_name, level, console_handler, propagate)
-
-
-def detailed_json_file_config(logger_name: str, level=DEBUG, propagate: bool = False) -> None:
-    file_handler = JsonFileHandler(log_file_path, level)
+def json_file_config(logger_name: str, fmt=detailed_json_format, level=DEBUG, propagate: bool = False) -> None:
+    file_handler = JsonFileHandler(log_file_path, level, Formatter(fmt=fmt, datefmt=date_format))
 
     setup_logger(logger_name, level, file_handler, propagate)
 
