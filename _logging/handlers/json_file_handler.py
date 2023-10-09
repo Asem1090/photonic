@@ -25,8 +25,8 @@ class JsonFileHandler(Handler):
                     file.seek(0)
                     dump(data, file)
                     return
-            except (FileNotFoundError or JSONDecodeError) as err:
-                getLogger().warning(f"Error Raised in json_file_handler.emit(): {err}\nCalling validate_json.")
+            except (FileNotFoundError, JSONDecodeError) as err:
+                getLogger().warning(f"Error Raised in json_file_handler.emit(): {err}\nCalling validate_json...")
                 self.validate_json()
 
     def validate_json(self):
