@@ -3,11 +3,13 @@ from logging import LogRecord, Handler, getLogger, DEBUG, Formatter
 from os.path import isfile, getsize
 from json.decoder import JSONDecodeError
 
-from _logging.formatters import detailed_json_format, date_format
+from _logging.formatters import Format
 
 
 class JsonFileHandler(Handler):
-    def __init__(self, file_path, level=DEBUG, formatter=Formatter(detailed_json_format, date_format)):
+    def __init__(self, file_path, level=DEBUG,
+                 formatter=Formatter(Format.detailed_json_format.value, Format.date_format.value)
+                 ):
         super().__init__(level)
 
         self.file_path = file_path

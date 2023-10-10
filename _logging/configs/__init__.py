@@ -5,18 +5,18 @@ from _logging.handlers import *
 
 
 def console_config(
-        logger_name: str, fmt=brief_format, level=WARNING, propagate: bool = False, colors: bool = True
+        logger_name: str, fmt: str = Format.brief_format.value, level=WARNING, propagate: bool = False, colors: bool = True
 ) -> None:
     formatter = ColorFormatter if colors else Formatter
-    _formatter = formatter(fmt=fmt, datefmt=date_format)
+    _formatter = formatter(fmt=fmt, datefmt=Format.date_format.value)
 
     console_handler = ConsoleHandler(level, _formatter)
 
     setup_logger(logger_name, level, console_handler, propagate)
 
 
-def json_file_config(logger_name: str, fmt=detailed_json_format, level=DEBUG, propagate: bool = False) -> None:
-    file_handler = JsonFileHandler(log_file_path, level, Formatter(fmt=fmt, datefmt=date_format))
+def json_file_config(logger_name: str, fmt: str = Format.detailed_json_format.value, level=DEBUG, propagate: bool = False) -> None:
+    file_handler = JsonFileHandler(log_file_path, level, Formatter(fmt=fmt, datefmt=Format.date_format.value))
 
     setup_logger(logger_name, level, file_handler, propagate)
 

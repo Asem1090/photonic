@@ -2,19 +2,14 @@ from logging import getLogger
 from uuid import uuid1
 
 from _logging.configs import console_config, json_file_config
-from _logging.handlers import log_file_path
-# log_file_path = "C:\\Users\\asems\\OneDrive\\Desktop\\log.json"
+from _logging.formatters import Format
+
 
 def main():
     logger_name = "test_logger"
 
-    # Configuring the logger
-    # globals()["log_file_path"] = "C:\\Users\\asems\\OneDrive\\Desktop\\log.json"
-
     console_config(logger_name)
     json_file_config(logger_name)
-
-    print(f"Main func: {log_file_path}")
 
     logger = getLogger(logger_name)
 

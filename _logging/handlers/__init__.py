@@ -10,20 +10,23 @@ def _get_path():
     return join(_project_folder, "log.json")
 
 
-class Path:
-    __log_file_path = _get_path()
+log_file_path = _get_path()
 
-    @property
-    def log_file_path(self):
-        return self.__log_file_path
-
-    @log_file_path.setter
-    def log_file_path(self, value):
-        self.__log_file_path = value
-
-
-__path = Path()
-log_file_path = __path.log_file_path
+#
+# class Path:
+#     __log_file_path = _get_path()
+#
+#     @property
+#     def log_file_path(self):
+#         return self.__log_file_path
+#
+#     @log_file_path.setter
+#     def log_file_path(self, value):
+#         self.__log_file_path = value
+#
+#
+# __path = Path()
+# log_file_path = __path.log_file_path
 
 
 # def get_log_file_path():
@@ -33,6 +36,3 @@ log_file_path = __path.log_file_path
 # def set_path(path: str):
 #     globals()["log_file_path"] = path
 #     print(log_file_path)
-
-
-print(type(log_file_path))
