@@ -3,7 +3,7 @@ from logging import LogRecord, Handler, getLogger, DEBUG, Formatter
 from os.path import isfile, getsize
 from json.decoder import JSONDecodeError
 
-from _logging.formatters import Format
+from src.photonic._logging.formatters import Format
 
 
 class JsonFileHandler(Handler):

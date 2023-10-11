@@ -1,8 +1,5 @@
 from logging import getLogger, DEBUG, WARNING, Formatter, Handler
 
-from _logging.formatters import *
-from _logging.handlers import *
-
 
 def console_config(
         logger_name: str, fmt: str = Format.brief_format.value, level=WARNING, propagate: bool = False, colors: bool = True

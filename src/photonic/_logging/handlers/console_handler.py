@@ -1,7 +1,7 @@
 from logging import StreamHandler, WARNING, Formatter
 from sys import stdout
 
-from _logging.formatters import Format
+from src.photonic._logging.formatters import Format
 
 
 class ConsoleHandler(StreamHandler):

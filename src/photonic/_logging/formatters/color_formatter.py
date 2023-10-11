@@ -1,6 +1,6 @@
 from logging import Formatter, LogRecord
 
-from enums.color import AnsiColor
+from src.photonic.enums.colors import AnsiColor
 
 
 class ColorFormatter(Formatter):

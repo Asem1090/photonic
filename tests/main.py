@@ -1,8 +1,7 @@
 from logging import getLogger
 from uuid import uuid1
 
-from _logging.configs import console_config, json_file_config
-from _logging.formatters import Format
+from src.photonic._logging.configs import console_config, json_file_config
 
 
 def main():
