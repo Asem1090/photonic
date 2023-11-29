@@ -16,8 +16,8 @@ def simpsons_three_eighths(func, start, end, intervals=1000):
     if start > end:
         return -1 * simpsons_three_eighths(func, start, end, intervals)
 
-    if intervals < 1 or type(intervals) != int:
-        raise ValueError("Intervals must be positive int")
+    if intervals < 4 or type(intervals) != int:
+        raise ValueError("Intervals must be positive int greater than 4")
 
     while intervals % 3 != 0:
         intervals += 1
