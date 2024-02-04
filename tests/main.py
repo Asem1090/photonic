@@ -1,22 +1,14 @@
-from logging import getLogger
-from uuid import uuid1
-
-from src.photonic._logging.configs import console_config, json_file_config
+import src.photonic.crypto.hash as hsh
 
 
 def main():
-    logger_name = "test_logger"
+    path = (r"C:\Users\asems\OneDrive - Qatar University\University\2024 Spring\Special Topic In Digital "
+            r"Forensics\Labs\lab 1\Lab 1\Lab 1\\")
+    full_path = path + "Cat.jpg"
 
-    console_config(logger_name)
-    json_file_config(logger_name)
-
-    logger = getLogger(logger_name)
-
-    logger.debug(f"Test Message from logger.debug #{uuid1}")
-    logger.info(f"Test Message from logger.info #{uuid1}")
-    logger.warning(f"Test Message from logger.warning #{uuid1}")
-    logger.error(f"Test Message from logger.error #{uuid1}")
-    logger.critical(f"Test Message from logger.critical #{uuid1}")
+    print("MD5: " + hsh.getMD5(full_path))
+    print("SHA1: " + hsh.getSHA1(full_path))
+    print("SHA512: " + hsh.getSHA512(full_path))
 
 
 if __name__ == "__main__":
