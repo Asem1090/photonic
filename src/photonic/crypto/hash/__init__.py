@@ -2,21 +2,17 @@ from hmac import new
 from hashlib import md5, sha1, sha512
 
 
-def getMD5(file_path):
-    with open(file_path, "rb") as file:
-        return md5(file.read()).hexdigest()
+def getMD5(binary_data):
+    return md5(binary_data).hexdigest()
 
 
-def getSHA1(file_path):
-    with open(file_path, "rb") as file:
-        return sha1(file.read()).hexdigest()
+def getSHA1(binary_data):
+    return sha1(binary_data).hexdigest()
 
 
-def getSHA512(file_path):
-    with open(file_path, "rb") as file:
-        return sha512(file.read()).hexdigest()
+def getSHA512(binary_data):
+    return sha512(binary_data).hexdigest()
 
 
-def getHMAC(file_path, key):
-    with open(file_path, "rb") as file:
-        return new(key, file.read(), md5).hexdigest()
+def getHMAC(binary_data, key):
+    return new(key, binary_data, md5).hexdigest()
