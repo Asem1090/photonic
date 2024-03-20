@@ -1,20 +1,29 @@
-import src.photonic.crypto.hash as hsh
+from src.photonic.crypto.stegno import lsb_hide, lsb_reveal
+from src.photonic.utils.time_utils import print_run_time
+
+@print_run_time
+def test1():
+    y = 5
+    for i in range(100_000_000):
+        x = f"{y}\n{'5'}"
+
+
+@print_run_time
+def test2():
+    y = 5
+    for i in range(100_000_000):
+        x = str(y) + "\n" + '5'
 
 
 def main():
-    path = (r"C:\Users\asems\OneDrive - Qatar University\University\2024 Spring\Special Topic In Digital "
-            r"Forensics\Labs\lab 1\Lab 1\Lab 1\\")
-    # secret_message = "Assalam Alikum"
-    # byte_message = "".join(format(ord(c), "08b") for c in secret_message)
-    # hsh.getHMAC(byte_message, )
-    file_name = "Hashes.txt"
-    with open(path + file_name, "r") as file:
-        hashes = dict(line.split(" : ") for line in file.read().splitlines())
-
-    print(f"{'File Name':<20}{'Integrate':<20}")
-    for file_name, _hash in hashes.items():
-        with open(path + file_name, "rb") as file:
-            print(f"{file_name:<20}{_hash.lower() == hsh.getMD5(file.read())}")
+    test1()
+    test2()
+    try:
+        ...
+    except OSError:
+        ...
+    except FileNotFoundError:
+        ...
 
 
 if __name__ == "__main__":
