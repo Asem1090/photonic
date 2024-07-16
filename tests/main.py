@@ -1,4 +1,4 @@
-from src.photonic.crypto.stegno import lsb_hide, lsb_reveal
+from temp_src import lsb_hide, lsb_reveal
 from src.photonic.utils.time_utils import print_run_time
 
 
